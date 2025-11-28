@@ -7,7 +7,7 @@ import VisitorPopup from './components/VisitorPopup';
 import Home from './pages/Home';
 import Options from './pages/Options';
 import Company from './pages/Company';
-import Contact from './pages/Contact';  // ← Fixed: Capital C
+import Contact from './pages/Contact';  
 import AdminLogin from './pages/AdminLogin';
 import Dashboard from './pages/Dashboard';
 import Gallery from './pages/Gallery';

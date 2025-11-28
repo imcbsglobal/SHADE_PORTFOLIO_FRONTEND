@@ -17,7 +17,7 @@ const OurClients = () => {
     description: "",
   });
 
-  const API_BASE = "https://shade.imcbs.com/";
+  const API_BASE = "https://shade.imcbs.com";
 
   useEffect(() => {
     loadClients();

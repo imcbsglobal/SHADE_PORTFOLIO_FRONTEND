@@ -15,7 +15,7 @@ const Smiles = () => {
     preview: "",
   });
 
-  const API_BASE = "https://shade.imcbs.com/";
+  const API_BASE = "https://shade.imcbs.com";
 
   useEffect(() => {
     loadItems();

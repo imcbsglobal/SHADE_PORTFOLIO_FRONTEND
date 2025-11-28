@@ -17,7 +17,7 @@ const Ceremonial = () => {
     description: "",
   });
 
-  const API_BASE = "https://shade.imcbs.com/";
+  const API_BASE = "https://shade.imcbs.com";
 
   useEffect(() => {
     loadEvents();

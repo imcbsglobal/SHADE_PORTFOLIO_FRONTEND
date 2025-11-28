@@ -48,7 +48,7 @@ const VisitorPopup = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "https://shade.imcbs.com/api/register/",
+        "https://shade.imcbs.com/api/register",
         {
           name: formData.name,
           phone: formData.phone,

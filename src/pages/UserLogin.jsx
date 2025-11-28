@@ -17,7 +17,7 @@ const UserLogin = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://127.0.0.1:8000/api/user-login/", {
+      const res = await axios.post("https://shade.imcbs.com/api/user-login/", {
         phone,
         password,
       });

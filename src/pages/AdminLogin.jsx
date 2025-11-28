@@ -13,7 +13,7 @@ const AdminLogin = () => {
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:8000/api/admin-login/", {
+      const res = await axios.post("https://shade.imcbs.com/api/admin-login/", {
         username,
         password,
       });

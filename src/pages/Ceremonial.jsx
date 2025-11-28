@@ -17,7 +17,7 @@ const Ceremonial = () => {
     description: "",
   });
 
-  const API_BASE = "http://127.0.0.1:8000";
+  const API_BASE = "https://shade.imcbs.com/";
 
   useEffect(() => {
     loadEvents();

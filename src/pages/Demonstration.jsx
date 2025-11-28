@@ -9,7 +9,7 @@ const Demonstration = () => {
   const [error, setError] = useState(null);
 
   // Match with your backend URL
-  const API_BASE = "https://starstay.imcbs.com";
+  const API_BASE = "https://shade.imcbs.com/";
 
   useEffect(() => {
     loadDemonstrations();

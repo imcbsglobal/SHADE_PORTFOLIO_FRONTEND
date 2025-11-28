@@ -22,7 +22,7 @@ const Dashboard = () => {
   const loadDashboardData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:8000/api/dashboard/", {
+      const res = await axios.get("https://shade.imcbs.com/api/dashboard/", {
         withCredentials: true,
       });
       

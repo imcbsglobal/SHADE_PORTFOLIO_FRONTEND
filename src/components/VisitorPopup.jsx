@@ -48,7 +48,7 @@ const VisitorPopup = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/register/",
+        "https://shade.imcbs.com/api/register/",
         {
           name: formData.name,
           phone: formData.phone,
@@ -113,7 +113,7 @@ const VisitorPopup = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/user-login/",
+        "https://shade.imcbs.com/user-login/",
         { phone: loginData.phone },
         {
           headers: {
@@ -167,7 +167,7 @@ const VisitorPopup = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/admin-login/",
+        "https://shade.imcbs.com/api/admin-login/",
         {
           username: adminData.username,
           password: adminData.password

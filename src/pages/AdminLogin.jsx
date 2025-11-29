@@ -12,8 +12,6 @@ const AdminLogin = () => {
     e.preventDefault();
     setError("");
 
-
-    
     try {
       const res = await axios.post("https://shade.imcbs.com/api/admin-login/", {
         username,
@@ -22,6 +20,7 @@ const AdminLogin = () => {
 
       if (res.data.message) {
         localStorage.setItem("isAdmin", "true");
+        localStorage.setItem("adminToken", res.data.token || "admin123token");
         window.dispatchEvent(new Event("storage"));
         navigate("/dashboard");
       }

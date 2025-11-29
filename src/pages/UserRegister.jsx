@@ -1,151 +1,112 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { Eye, EyeOff } from "lucide-react";
+// import React, { useState } from "react";
+// import axios from "axios";
+// import { useNavigate } from "react-router-dom";
 
-const UserRegister = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    password: "",
-  });
-  const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+// function UserRegister() {
+//   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
+//   const [name, setName] = useState("");
+//   const [email, setEmail] = useState("");
+//   const [phone, setPhone] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [confirm_password, setConfirmPassword] = useState("");
+//   const [loading, setLoading] = useState(false);
 
-    try {
-      const res = await axios.post("https://shade.imcbs.com/api/user-register/", formData);
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
 
-      if (res.data.message) {
-        alert("✅ Registration successful! Please login.");
-        navigate("/user-login");
-      }
-    } catch (err) {
-      const errorData = err.response?.data;
-      if (errorData?.phone) {
-        setError(`Phone: ${errorData.phone[0]}`);
-      } else if (errorData?.email) {
-        setError(`Email: ${errorData.email[0]}`);
-      } else {
-        setError("Registration failed. Please try again.");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
+//     try {
+//       setLoading(true);
 
-  return (
-    <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-blue-100 to-purple-100">
-      <div className="bg-white p-8 rounded-3xl shadow-2xl w-full max-w-md">
-        <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-6 text-center">
-          Create Account 📝
-        </h2>
+//       const formData = {
+//         name,
+//         email,
+//         phone,
+//         password,
+//         confirm_password,
+//       };
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Full Name *
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your name"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full border-2 border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-              required
-            />
-          </div>
+//       // ✅ Correct API URL
+//       const res = await axios.post(
+//         "https://shade.imcbs.com/api/user-register/",
+//         formData
+//       );
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Phone Number *
-            </label>
-            <input
-              type="tel"
-              placeholder="10-digit phone number"
-              value={formData.phone}
-              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-              className="w-full border-2 border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-              required
-            />
-          </div>
+//       console.log("Registration Success:", res.data);
+//       navigate("/login");
+//     } catch (err) {
+//       console.error("❌ Registration error:", err);
+//       alert("Registration failed. Please try again.");
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Email (Optional)
-            </label>
-            <input
-              type="email"
-              placeholder="your@email.com"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full border-2 border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-            />
-          </div>
+//   return (
+//     <div className="max-w-md mx-auto mt-12 p-6 shadow-lg rounded-lg border">
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Password *
-            </label>
-            <div className="relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Create a strong password"
-                value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="w-full border-2 border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-                required
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2"
-              >
-                {showPassword ? (
-                  <EyeOff className="w-5 h-5 text-gray-500" />
-                ) : (
-                  <Eye className="w-5 h-5 text-gray-500" />
-                )}
-              </button>
-            </div>
-          </div>
+//       <h2 className="text-2xl font-bold mb-6 text-center">
+//         Create Your Account
+//       </h2>
 
-          {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
-              {error}
-            </div>
-          )}
+//       <form onSubmit={handleSubmit}>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 disabled:opacity-50 transition-all shadow-lg"
-          >
-            {loading ? "Registering..." : "Register"}
-          </button>
-        </form>
+//         <input
+//           type="text"
+//           placeholder="Full Name"
+//           className="w-full mb-3 p-3 border rounded"
+//           value={name}
+//           onChange={(e) => setName(e.target.value)}
+//           required
+//         />
 
-        <div className="mt-6 text-center">
-          <p className="text-gray-600">
-            Already have an account?{" "}
-            <button
-              onClick={() => navigate("/user-login")}
-              className="text-blue-600 font-bold hover:underline"
-            >
-              Login here
-            </button>
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-};
+//         <input
+//           type="email"
+//           placeholder="Email"
+//           className="w-full mb-3 p-3 border rounded"
+//           value={email}
+//           onChange={(e) => setEmail(e.target.value)}
+//           required
+//         />
 
-export default UserRegister;
+//         <input
+//           type="text"
+//           placeholder="Phone Number"
+//           className="w-full mb-3 p-3 border rounded"
+//           value={phone}
+//           onChange={(e) => setPhone(e.target.value)}
+//           required
+//         />
+
+//         <input
+//           type="password"
+//           placeholder="Password"
+//           className="w-full mb-3 p-3 border rounded"
+//           value={password}
+//           onChange={(e) => setPassword(e.target.value)}
+//           required
+//         />
+
+//         <input
+//           type="password"
+//           placeholder="Confirm Password"
+//           className="w-full mb-3 p-3 border rounded"
+//           value={confirm_password}
+//           onChange={(e) => setConfirmPassword(e.target.value)}
+//           required
+//         />
+
+//         <button
+//           type="submit"
+//           className="w-full bg-blue-600 text-white py-3 rounded mt-4"
+//           disabled={loading}
+//         >
+//           {loading ? "Registering..." : "Register"}
+//         </button>
+
+//       </form>
+//     </div>
+//   );
+// }
+
+// export default UserRegister;
